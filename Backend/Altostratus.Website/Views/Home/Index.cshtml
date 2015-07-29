@@ -1,0 +1,59 @@
+﻿@section scripts {
+      @Scripts.Render("~/bundles/app")
+}
+
+
+  <!-- User Preferences input form -->
+  <div id="user-prefs" class="well well-sm" data-bind="visible: isLoggedIn">
+
+    <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#user-prefs-form" data-bind="click: getPrefs">
+      User Prefs <span class="caret"></span>
+    </a>
+
+    <form id="user-prefs-form" data-bind="submit: setPrefs" class="collapse">
+      <!-- ko ifnot: initialized-->
+      <p><span class="label-info">Thinking...</span></p>
+      <!-- /ko -->
+
+      <div data-bind="visible: initialized">
+        <div class="form-group">
+          <label for="ConversationLimit">Conversation Limit</label>
+          <input type="text" class="form-control" id="ConversationLimit" data-bind="value: ConversationLimit">
+        </div>
+        <div class="form-group">
+          <label for="SortOrder">Sort Order</label>
+          <input type="text" class="form-control" id="SortOrder" data-bind="value: SortOrder">
+        </div>
+        <div class="checkbox" data-bind="foreach: AllCategories">
+          <label><input type="checkbox" data-bind="checked: Checked"><span data-bind="text: Name"></span></label>
+        </div>
+        <button type="submit" class="btn btn-default" data-bind="enable: !working()">Update</button> 
+        <span class="label-info" data-bind="visible: working">working...</span>
+      </div>
+    </form>
+</div>
+
+  <!-- List of conversations -->
+  <div class="panel-group" id="accordion" role="tablist">
+  <div class="panel panel-default">
+
+    <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+
+    <!-- ko foreach : conversations -->
+
+    <div class="panel-heading" id="headingOne">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" data-bind="attr: { href: '#convo' + $index() }">
+          <span data-bind="html: Title"></span>
+        </a>
+      </h4>
+    </div>
+    <div data-bind="attr: { id: 'convo' + $index() }" class="panel-collapse collapse">
+      <div class="panel-body">
+        <span data-bind="html: Body"></span>
+      </div>
+    </div>
+
+    <!-- /ko -->
+  </div>
+</div>

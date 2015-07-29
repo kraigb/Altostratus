@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Altostratus;assembly=Altostratus"
+             x:Class="Altostratus.ItemPage"
+             Title ="{ Binding PageTitle }" >  
+
+  <!-- Binding context set in code to set ItemID -->
+
+  <StackLayout x:Name="ItemLayout" Padding="5, 20, 5, 10" Orientation="Vertical">
+    <Label x:Name="TitleLabel" Text="{Binding Title}" />
+    <Label x:Name="ProviderLabel" Text="{Binding Provider}" FontAttributes="Bold" />
+    <!-- Webview created in code as a child of WebviewBorder -->
+    <Frame x:Name ="WebviewFrame" OutlineColor="Green" VerticalOptions="FillAndExpand" />
+  </StackLayout>
+
+</ContentPage>

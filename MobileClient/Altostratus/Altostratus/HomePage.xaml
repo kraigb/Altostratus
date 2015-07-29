@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Altostratus;assembly=Altostratus"
+             x:Class="Altostratus.HomePage"
+             Title ="{ Binding PageTitle }">
+
+  <!-- The following lines instantiate the view model. Some developers prefer to use a view model 
+       locator pattern to accomplish this task, but that is beyond the scope of this sample. -->
+  <ContentPage.BindingContext>
+    <local:HomeViewModel />
+  </ContentPage.BindingContext>
+  
+  <ContentPage.ToolbarItems>  
+    <ToolbarItem Text="{ Binding ToolbarItemText_Configure }" Command="{ Binding Command_Configure }" >
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="configure.png" Android="configure.png" WinPhone="Assets/configure.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+
+    <ToolbarItem Text="{ Binding ToolbarItemText_Refresh }" Command="{ Binding Command_Refresh}" >
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="refresh.png" Android="refresh.png" WinPhone="Assets/refresh.png" />
+      </ToolbarItem.Icon>      
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
+
+  <StackLayout Padding="10, 0, 10, 20">
+    <!-- The NoCategoriesMessageVisible flag is computed in the viewmodel from the count of groups in the data source -->
+    <StackLayout Padding="20, 30, 10, 30" IsVisible="{ Binding NoCategoriesMessageVisible }">
+      <Label Text="{ Binding NoCategoriesMessage1 }" FontSize="Large" XAlign="Center" />
+      <Label Text="{ Binding NoCategoriesMessage2 }" FontSize="Medium" XAlign="Center"/>
+    </StackLayout>
+    
+    <StackLayout HorizontalOptions="End" Orientation="Horizontal" IsVisible="{ Binding IsOffline }" >
+      <!-- Online/offline indicator; generally exclusive of the ActivityIndicator as we shouldn't ever sync when offline. -->           
+      <Label Text="{ Binding OfflineMessage }" FontSize="Medium" />
+    </StackLayout>
+      
+    <!-- This is set to running/visible in code when a sync is happening, as indicated by viewmodel events. -->    
+    <!--<ActivityIndicator x:Name="syncIndicator" IsRunning="false" IsVisible="false" />-->    
+    <ActivityIndicator x:Name="syncIndicator" IsRunning="{ Binding IsSyncing }" IsVisible="{ Binding IsSyncing }" />
+
+    <!-- Could use the inverse of NoCategoriesMessageVisible to show./hide ListView as well, but we'll leave it visible with no items. -->
+    <ListView x:Name="itemListView"
+              ItemsSource="{ Binding GroupedItems }"                                   
+              IsGroupingEnabled="true"               
+              ItemTapped="OnItemTapped">
+      <!-- BUG 27458: headers aren't rendering on iOS 8.1. Can use GroupDisplayBinding="{ Binding Name }" instead but the font size is too small. -->
+      <ListView.GroupHeaderTemplate>        
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout>
+              <StackLayout.Padding>
+                <!-- Without a bottom padding of 0, the headers on iOS overlap the items -->
+                <OnPlatform x:TypeArguments="Thickness" iOS="5, 0, 0, 0" Android="5, 15, 0, 0" WinPhone="5, 15, 0, 0" />
+              </StackLayout.Padding>              
+              <Label Text="{Binding Name}"  FontSize="Large" FontAttributes="Bold" />
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>      
+      </ListView.GroupHeaderTemplate>
+      <ListView.ItemTemplate>
+        <DataTemplate>           
+          <TextCell Text="{ Binding Title }" Detail="{ Binding Description }">          
+          </TextCell>          
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+     
+</ContentPage>

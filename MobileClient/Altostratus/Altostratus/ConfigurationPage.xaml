@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Altostratus;assembly=Altostratus"
+             x:Class="Altostratus.ConfigurationPage"
+             Title ="{ Binding PageTitle }">
+
+  <ContentPage.BindingContext>
+    <local:ConfigurationViewModel />
+  </ContentPage.BindingContext>
+
+  <StackLayout Padding="10, 20, 10, 10" Spacing="10" Orientation="Vertical">
+    <StackLayout Orientation="Vertical">
+      <!-- Xamarin.Auth does not yet support Windows Phone, so there we'll always run unauthenticated. -->
+      <StackLayout.IsVisible>        
+        <OnPlatform x:TypeArguments="x:Boolean" Android="true" iOS="true" WinPhone="false" />
+      </StackLayout.IsVisible>
+      
+      <Label Text="{ Binding AuthenticationMessage }" FontSize="Medium" />
+      <Picker x:Name="providerPicker" Title="{ Binding ProviderListLabel }" IsVisible="{ Binding ProviderListVisible }" />
+      <Button Text="{ Binding LoginButtonLabel}" Clicked="LoginTapped" />
+    </StackLayout>
+    <StackLayout Padding="0, 20, 0, 0" Orientation="Vertical">      
+      <Label x:Name="limitLabel" FontSize="Medium" FontAttributes="Bold" Text="{ Binding LimitHeader }" />
+      
+      <!-- We'll set the binding for the slider value in code so we can use the CurrentUser. Also note that
+           due to bug 21181/23665, Maximum must be set before Minimum to avoid validation exceptions both in
+           XAML and in code. -->
+      <Slider x:Name="limitSlider" ValueChanged="SliderChanged" />
+      
+      <Label Text="{ Binding CategoriesHeader }" FontSize="Large" />
+
+      <!-- We create the option list in a ScrollView rather than a ListView to avoid (a) separator lines on iOS
+           and Android, and (b) bug #24286 that causes Switch controls on Android to be disposed prematurely causing
+           a crash. For reference, the ListView code that we're duplicating is below. -->
+      <ScrollView Orientation="Vertical">
+        <StackLayout x:Name="optionsStack" Orientation="Vertical" Spacing="10">
+          <!-- Children are populated in the ConfigurationPage constructor. -->
+        </StackLayout>
+      </ScrollView>
+            
+      <!--<ListView ItemsSource="{Binding Categories}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>                
+                <StackLayout Padding="20, 15, 10, 5" Orientation ="Horizontal">              
+                  <Switch IsToggled="{ Binding IsActive, Mode=TwoWay }" />
+                  <Label Text="{ Binding Name }" FontSize="Large" YAlign="Center" />
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>-->
+    </StackLayout>
+  </StackLayout>
+  
+</ContentPage>

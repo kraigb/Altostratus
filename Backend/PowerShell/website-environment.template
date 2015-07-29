@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<environment name="{0}">
+    <website name="{1}" />
+    <storage accountName="{2}" accessKey="{3}" connectionString="{4}" />
+    <sqlAzure databaseServerName="{5}" userName="{6}" password="{7}">
+    	<DB connectionString="{8}" />
+    </sqlAzure>
+</environment>

@@ -1,0 +1,9 @@
+﻿{
+  "$schema": "http://schemastore.org/schemas/json/webjob-publish-settings.json",
+  "webJobName": "AltoStratWJ",
+  "startTime": "2015-03-02T00:00:00-08:00",
+  "endTime": null,
+  "jobRecurrenceFrequency": "Hour",
+  "interval": 6,
+  "runMode": "Scheduled"
+}
