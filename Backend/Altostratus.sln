@@ -11,52 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altostratus.Website", "Alto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altostratus.WebJob", "Altostratus.WebJob\Altostratus.WebJob.csproj", "{E2D32951-0EC6-4FC6-B6B8-D9A47F7407DF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerShell", "PowerShell", "{9B77EF86-47DC-449E-AC90-39BF74C99D14}"
-	ProjectSection(SolutionItems) = preProject
-		PowerShell\New-AzureWebsitewithDB_WebJob.ps1 = PowerShell\New-AzureWebsitewithDB_WebJob.ps1
-		PowerShell\Publish-AzureWebsite.ps1 = PowerShell\Publish-AzureWebsite.ps1
-		PowerShell\pubxml.template = PowerShell\pubxml.template
-		PowerShell\RemoveRiande.ps1 = PowerShell\RemoveRiande.ps1
-		PowerShell\website-environment.template = PowerShell\website-environment.template
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notes", "Notes", "{91408CCB-DA18-4792-9E64-EB7F9927F1B2}"
-	ProjectSection(SolutionItems) = preProject
-		PowerShell\Notes\AddAzureCredentials.ps1 = PowerShell\Notes\AddAzureCredentials.ps1
-		PowerShell\Notes\CreateAzureCredential.ps1 = PowerShell\Notes\CreateAzureCredential.ps1
-		PowerShell\Notes\CreateFBCredential.ps1 = PowerShell\Notes\CreateFBCredential.ps1
-		PowerShell\Notes\CreateGoogCredential.ps1 = PowerShell\Notes\CreateGoogCredential.ps1
-		PowerShell\Notes\CreateSQLdb.ps1 = PowerShell\Notes\CreateSQLdb.ps1
-		PowerShell\Notes\CreateSQLpwCredential.ps1 = PowerShell\Notes\CreateSQLpwCredential.ps1
-		PowerShell\Notes\CreateTwitterCredential.ps1 = PowerShell\Notes\CreateTwitterCredential.ps1
-		PowerShell\Notes\HowToDeploy.docx = PowerShell\Notes\HowToDeploy.docx
-		PowerShell\Notes\testAllCredFiles.ps1 = PowerShell\Notes\testAllCredFiles.ps1
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altostratus.UnitTests", "Altostratus.UnitTests\Altostratus.UnitTests.csproj", "{5F56093B-DFE8-4CB2-9246-8476365EA7CC}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://kraigbrockschmidt.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Altostratus.ClientModels\\Altostratus.ClientModels.csproj
-		SccProjectName1 = Altostratus.ClientModels
-		SccLocalPath1 = Altostratus.ClientModels
-		SccProjectUniqueName2 = Altostratus.Data\\Altostratus.DAL.csproj
-		SccProjectName2 = Altostratus.Data
-		SccLocalPath2 = Altostratus.Data
-		SccProjectUniqueName3 = Altostratus.Website\\Altostratus.Website.csproj
-		SccProjectName3 = Altostratus.Website
-		SccLocalPath3 = Altostratus.Website
-		SccProjectUniqueName4 = Altostratus.WebJob\\Altostratus.WebJob.csproj
-		SccProjectName4 = Altostratus.WebJob
-		SccLocalPath4 = Altostratus.WebJob
-		SccProjectUniqueName5 = Altostratus.UnitTests\\Altostratus.UnitTests.csproj
-		SccProjectName5 = Altostratus.UnitTests
-		SccLocalPath5 = Altostratus.UnitTests
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -85,8 +42,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{91408CCB-DA18-4792-9E64-EB7F9927F1B2} = {9B77EF86-47DC-449E-AC90-39BF74C99D14}
 	EndGlobalSection
 EndGlobal
